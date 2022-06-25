@@ -1,1 +1,2 @@
 # rock-paper-scissors
+I am attempting to create a first version of the rock paper scissors game using Javascript that will be run through the console. This is the first iteration that will test my knowledge of problem solving the basic syntax of Javascript.
