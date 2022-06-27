@@ -15,26 +15,27 @@ function computerPlay() {
     const random = Math.floor(Math.random() * choices.length);
     return choices[random];
 }
+// players choice //
+/* function playerPlay(){
+    let choice = prompt("Choose rock, paper or scissors","");
+    return choice;
+} */
 
 const computerSelection = computerPlay();
-const playerSelection = prompt ("Choose rock, paper or scissors","");
+const playerSelection = computerPlay();
 
 function playRound(playerSelection,computerSelection) {
-    if (playerSelection == "rock" && computerSelection == "paper") {
-        console.log("You Lose! Paper beats Rock");
-    } else if (playerSelection == "rock" && computerSelection == "scissors") {
-        console.log("You Win! Rock beats Scissors")
-    } else if (playerSelection == "paper" && computerSelection == "scissors") {
-        console.log("You Lose! Scissors beats Paper");
-    } else if (playerSelection == "scissors" && computerSelection == "paper") {
-        console.log("You Win! Scissors beats Paper");
-    } else if (playerSelection == "scissor" && computerSelection == "rock") {
-        console.log("You Lose! Rock beats Scissors");
-    } else if (playerSelection == "paper" && computerSelection == "rock") {
-        console.log("You Win! Paper beats Rock");
-    } else {
-        console.log("You both picked the same! Tie Game");
+
+    let playerWin = "Player won!";
+    let computerWin = "Computer won!";
+
+    if (playerSelection == computerSelection) {
+        return "Tie game!";
+    } else if (playerSelection == "rock" && computerSelection == "scissors" || playerSelection == "scissors" && computerSelection == "paper" || playerSelection == "paper" && computerSelection == "rock") {
+        return playerWin;
+    } else if (playerSelection == "scissors" && computerSelection == "rock" || playerSelection == "rock" && computerSelection == "paper" || playerSelection == "paper" && computerSelection == "scissors") {
+        return computerWin;
     }
 }
 
-playRound(playerSelection,computerSelection);
+console.log(playRound(playerSelection,computerSelection));
