@@ -10,32 +10,40 @@
 
 // computerPlay //
 
-function computerPlay() {
-    let choices = ["rock", "paper", "scissors"];
-    const random = Math.floor(Math.random() * choices.length);
-    return choices[random];
-}
-// players choice //
-/* function playerPlay(){
-    let choice = prompt("Choose rock, paper or scissors","");
-    return choice;
-} */
+const choices = ["rock", "paper", "scissors"];
 
-const computerSelection = computerPlay();
-const playerSelection = computerPlay();
-
-function playRound(playerSelection,computerSelection) {
-
-    let playerWin = "Player won!";
-    let computerWin = "Computer won!";
-
-    if (playerSelection == computerSelection) {
-        return "Tie game!";
-    } else if (playerSelection == "rock" && computerSelection == "scissors" || playerSelection == "scissors" && computerSelection == "paper" || playerSelection == "paper" && computerSelection == "rock") {
-        return playerWin;
-    } else if (playerSelection == "scissors" && computerSelection == "rock" || playerSelection == "rock" && computerSelection == "paper" || playerSelection == "paper" && computerSelection == "scissors") {
-        return computerWin;
-    }
+function randomPlay() {
+  let rand = Math.floor(Math.random() * choices.length);
+  return choices[rand];
 }
 
-console.log(playRound(playerSelection,computerSelection));
+const computerChoice = randomPlay();
+const playerChoice = randomPlay();
+
+for (count = 0; count < 5; count++) {
+  const computerChoice = randomPlay();
+  const playerChoice = randomPlay();
+
+function playRound(computerChoice,playerChoice) {
+  let playerWin = "Player Won!";
+  let computerWin = "Computer Won!";
+
+  if (computerChoice == playerChoice) {
+    return "Tie game!";
+  } else if (computerChoice == "rock" && playerChoice == "paper") {
+    return playerWin;
+  } else if (computerChoice == "paper" && playerChoice == "scissors") {
+    return playerWin;
+  } else if (computerChoice == "scissors" && playerChoice == "rock") {
+    return playerWin;
+  } else if (computerChoice == "paper" && playerChoice == "rock") {
+    return computerWin;
+  } else if (computerChoice == "rock" && playerChoice == "scissors") {
+    return computerWin;
+  } else if (computerChoice == "scissors" && playerChoice == "paper") {
+    return computerWin;
+  }
+}
+  let oneRound = playRound(computerChoice,playerChoice);
+  console.log(oneRound);
+}
