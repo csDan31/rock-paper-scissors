@@ -25,6 +25,8 @@ let computerChoice = randomPlay();
 // const playerChoice = randomPlay(); // to test two computers playing
 let playerChoice;
 
+game();
+
 function game() {
     let playerScore = 0;
     let computerScore = 0;
@@ -81,4 +83,3 @@ function game() {
     console.log("Final Score: Player: " + playerScore + " - Computer: " + computerScore);
 }
 
-game();
