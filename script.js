@@ -13,37 +13,72 @@
 const choices = ["rock", "paper", "scissors"];
 
 function randomPlay() {
-  let rand = Math.floor(Math.random() * choices.length);
-  return choices[rand];
+    let rand = Math.floor(Math.random() * choices.length);
+    return choices[rand];
 }
 
-const computerChoice = randomPlay();
-const playerChoice = randomPlay();
-
-for (count = 0; count < 5; count++) {
-  const computerChoice = randomPlay();
-  const playerChoice = randomPlay();
-
-function playRound(computerChoice,playerChoice) {
-  let playerWin = "Player Won!";
-  let computerWin = "Computer Won!";
-
-  if (computerChoice == playerChoice) {
-    return "Tie game!";
-  } else if (computerChoice == "rock" && playerChoice == "paper") {
-    return playerWin;
-  } else if (computerChoice == "paper" && playerChoice == "scissors") {
-    return playerWin;
-  } else if (computerChoice == "scissors" && playerChoice == "rock") {
-    return playerWin;
-  } else if (computerChoice == "paper" && playerChoice == "rock") {
-    return computerWin;
-  } else if (computerChoice == "rock" && playerChoice == "scissors") {
-    return computerWin;
-  } else if (computerChoice == "scissors" && playerChoice == "paper") {
-    return computerWin;
-  }
+function playerInput() {
+    return prompt("Choose rock, paper, or scissors","")
 }
-  let oneRound = playRound(computerChoice,playerChoice);
-  console.log(oneRound);
+
+let computerChoice = randomPlay();
+// const playerChoice = randomPlay(); // to test two computers playing
+let playerChoice;
+
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+
+    for (count = 0; count < 5; count++) {
+        const computerChoice = randomPlay();
+        // const playerChoice = randomPlay(); //
+        const playerChoice = playerInput();
+
+        let playerWin = "Player Won!";
+        let computerWin = "Computer Won!";
+
+        function playRound(computerChoice, playerChoice) {
+            if (computerChoice == playerChoice) {
+                alert("Tie game!" + " Player: " + playerScore + " - Computer: " + computerScore);
+            } else if (computerChoice == "rock" && playerChoice == "paper") {
+                playerScore++;
+                alert(playerWin + " Player: " + playerScore + " - Computer: " + computerScore);
+            } else if (computerChoice == "paper" && playerChoice == "scissors") {
+                playerScore++;
+                alert(playerWin + " Player: " + playerScore + " - Computer: " + computerScore);
+            } else if (computerChoice == "scissors" && playerChoice == "rock") {
+                playerScore++;
+                alert(playerWin + " Player: " + playerScore + " - Computer: " + computerScore);
+            } else if (computerChoice == "paper" && playerChoice == "rock") {
+                computerScore++;
+                alert(computerWin + " Player: " + playerScore + " - Computer: " + computerScore);
+            } else if (computerChoice == "rock" && playerChoice == "scissors") {
+                computerScore++;
+                alert(computerWin + " Player: " + playerScore + " - Computer: " + computerScore);
+            } else if (computerChoice == "scissors" && playerChoice == "paper") {
+                computerScore++;
+                alert(computerWin + " Player: " + playerScore + " - Computer: " + computerScore);
+            }
+            }
+            if (playerChoice == null || playerChoice == "") {
+                alert("I guess you didn't want to play.");
+                return "Game terminated";
+                //break; // break is not needed?
+        }
+        let oneRound = playRound(computerChoice, playerChoice);
+        // console.log(oneRound);
+    }
+    function results() {
+        if (playerScore > computerScore) {
+            return "You won! You beat the computer!";
+        } else if (computerScore > playerScore) {
+            return "Looks like you lost...better luck next time."
+        } else if (playerChoice == computerChoice) {
+            return "Looks like it's a tie! No winner!";
+        }
+    }
+    alert(results());
+    console.log("Final Score: Player: " + playerScore + " - Computer: " + computerScore);
 }
+
+game();
