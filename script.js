@@ -8,6 +8,22 @@
 // else depending on what computer chooses and user chooses, one will win //
 // declare a either a tie or a winner //
 
+// create button elements
+const body = document.querySelector('body');
+
+const rock = document.createElement('button');
+rock.textContent = 'Rock';
+
+const paper = document.createElement('button');
+paper.textContent = 'Paper';
+
+const scissors = document.createElement('button');
+scissors.textContent = 'Scissors';
+
+body.appendChild(rock);
+body.appendChild(paper);
+body.appendChild(scissors);
+
 // computerPlay //
 
 const choices = ["rock", "paper", "scissors"];
@@ -17,17 +33,27 @@ function randomPlay() {
     return choices[rand];
 }
 
-function playerInput() {
+/*function playerInput() {
     return prompt("Choose rock, paper, or scissors","")
+} */
+
+function playerInput(){
+    console.log(this.textContent);
+    //return this.textContent;
 }
 
 let computerChoice = randomPlay();
 // const playerChoice = randomPlay(); // to test two computers playing
 let playerChoice;
 
-game();
+// button event listeners
+rock.addEventListener('click', playerInput);
+paper.addEventListener('click', playerInput);
+scissors.addEventListener('click', playerInput);
 
-function game() {
+//game();
+
+/*function game() {
     let playerScore = 0;
     let computerScore = 0;
 
@@ -67,6 +93,7 @@ function game() {
                 return "Game terminated";
                 //break; // break is not needed?
         }
+        
         let oneRound = playRound(computerChoice, playerChoice);
         // console.log(oneRound);
     }
@@ -82,4 +109,4 @@ function game() {
     alert(results());
     console.log("Final Score: Player: " + playerScore + " - Computer: " + computerScore);
 }
-
+*/
