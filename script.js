@@ -36,21 +36,69 @@ function randomPlay() {
 /*function playerInput() {
     return prompt("Choose rock, paper, or scissors","")
 } */
+//let playerChoice = playerInput();
 
-function playerInput(){
-    console.log(this.textContent);
-    //return this.textContent;
-}
+let computerSelection = randomPlay();
+let playerSelection = randomPlay();
+//let computerChoice = "rock";
 
-let computerChoice = randomPlay();
+let playerScore = 0;
+let computerScore = 0;
+
 // const playerChoice = randomPlay(); // to test two computers playing
-let playerChoice;
 
+function playRound(computerSelection, playerSelection) {
+    if (computerSelection == playerSelection) {
+        console.log("tie game")
+    } else if (computerSelection == "rock" && playerSelection == "paper") {
+        playerScore++;
+        console.log("player win")
+    } else if (computerSelection == "paper" && playerSelection == "scissors") {
+        playerScore++;
+        console.log("player win")
+    } else if (computerSelection == "scissors" && playerSelection == "rock") {
+        playerScore++;
+        console.log("player win")
+    } else if (computerSelection == "paper" && playerSelection == "rock") {
+        computerScore++;
+        console.log("computer win")
+    } else if (computerSelection == "rock" && playerSelection == "scissors") {
+        computerScore++;
+        console.log("computer win")
+    } else if (computerSelection == "scissors" && playerSelection == "paper") {
+        computerScore++;
+        console.log("computer win")
+    }
+    }
 // button event listeners
-rock.addEventListener('click', playerInput);
-paper.addEventListener('click', playerInput);
-scissors.addEventListener('click', playerInput);
+const buttons = document.querySelectorAll('button');
 
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        let pressed = button.textContent.toLowerCase();
+        let computerSelection = randomPlay();
+        choicesDiv.textContent = 'You chose '+ pressed + ' The Computer chooses ' +computerSelection
+        //resultsDiv.textContent = playRound(computerSelection,pressed);
+        scoreDiv.textContent = 'Score: Player: '+ playerScore + ' Computer: ' + computerScore;
+        
+    });
+});
+
+const resultsDiv = document.createElement('div');
+resultsDiv.setAttribute('class', 'results')
+resultsDiv.textContent = 'Results:';
+
+const choicesDiv = document.createElement('div');
+choicesDiv.setAttribute('class', 'choices')
+choicesDiv.textContent = 'Choices:';
+
+const scoreDiv = document.createElement('div');
+scoreDiv.setAttribute('class', 'score')
+scoreDiv.textContent = 'Score:';
+
+body.appendChild(choicesDiv)
+body.appendChild(resultsDiv);
+body.appendChild(scoreDiv)
 //game();
 
 /*function game() {
