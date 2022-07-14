@@ -12,6 +12,7 @@
 const body = document.querySelector('body');
 
 const rock = document.createElement('button');
+rock.setAttribute('id', 'rockbtn');
 rock.textContent = 'Rock';
 
 const paper = document.createElement('button');
@@ -49,40 +50,66 @@ let computerScore = 0;
 
 function playRound(computerSelection, playerSelection) {
     if (computerSelection == playerSelection) {
-        console.log("tie game")
+        resultsDiv.textContent = "Results: Tie!"
     } else if (computerSelection == "rock" && playerSelection == "paper") {
         playerScore++;
-        console.log("player win")
+        resultsDiv.textContent = "Results: Player wins round!"
     } else if (computerSelection == "paper" && playerSelection == "scissors") {
         playerScore++;
-        console.log("player win")
+        resultsDiv.textContent = "Results: Player wins round!"
     } else if (computerSelection == "scissors" && playerSelection == "rock") {
         playerScore++;
-        console.log("player win")
+        resultsDiv.textContent = "Results: Player wins round!"
     } else if (computerSelection == "paper" && playerSelection == "rock") {
         computerScore++;
-        console.log("computer win")
+        resultsDiv.textContent = "Results: Computer wins round!"
     } else if (computerSelection == "rock" && playerSelection == "scissors") {
         computerScore++;
-        console.log("computer win")
+        resultsDiv.textContent = "Results: Computer wins round!"
     } else if (computerSelection == "scissors" && playerSelection == "paper") {
         computerScore++;
-        console.log("computer win")
+        resultsDiv.textContent = "Results: Computer wins round!"
     }
     }
 // button event listeners
 const buttons = document.querySelectorAll('button');
 
-buttons.forEach((button) => {
+/*buttons.forEach((button) => {
     button.addEventListener('click', () => {
         let pressed = button.textContent.toLowerCase();
         let computerSelection = randomPlay();
-        choicesDiv.textContent = 'You chose '+ pressed + ' The Computer chooses ' +computerSelection
-        //resultsDiv.textContent = playRound(computerSelection,pressed);
+        choicesDiv.textContent = 'Choices: You chose '+ pressed + ' & the Computer chooses ' +computerSelection
+        playRound(computerSelection,pressed);
         scoreDiv.textContent = 'Score: Player: '+ playerScore + ' Computer: ' + computerScore;
-        
+        if(computerScore === 5) {
+            resultsDiv.textContent = 'Results: Computer wins game!';
+        } else if (playerScore === 5) {
+            resultsDiv.textContent = 'Results: Player wins game!';
+        }
     });
-});
+}); */
+function playerClick(){
+    let pressed = this.textContent.toLowerCase();
+        let computerSelection = randomPlay();
+        choicesDiv.textContent = 'Choices: You chose '+ pressed + ' & the Computer chooses ' +computerSelection
+        playRound(computerSelection,pressed);
+        scoreDiv.textContent = 'Score: Player: '+ playerScore + ' Computer: ' + computerScore;
+        if(computerScore === 5) {
+            resultsDiv.textContent = 'Results: Computer wins game!';
+            rock.removeEventListener('click', playerClick);
+            paper.removeEventListener('click', playerClick);
+            scissors.removeEventListener('click', playerClick);
+        } else if (playerScore === 5) {
+            resultsDiv.textContent = 'Results: Player wins game!';
+            rock.removeEventListener('click', playerClick);
+            paper.removeEventListener('click', playerClick);
+            scissors.removeEventListener('click', playerClick);
+        }
+    };
+
+rock.addEventListener('click',playerClick);
+paper.addEventListener('click',playerClick);
+scissors.addEventListener('click',playerClick);
 
 const resultsDiv = document.createElement('div');
 resultsDiv.setAttribute('class', 'results')
